@@ -13,7 +13,7 @@
 
 <title>Your Name</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.17/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -32,8 +32,6 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -144,11 +142,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -177,8 +179,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -186,16 +188,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -244,36 +239,16 @@ $(document).ready(function () {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">My Site</a>
+      <a class="navbar-brand" href="index.html">SDS 322E Team 4</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">Home</a>
-</li>
-<li>
-  <a href="portfolio.html">Portfolio</a>
+  <a href="index.html">Coral Reef Bleaching Project</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li>
-  <a href="mailto:&lt;khanhlinh@utexas.edu&gt;">
-    <span class="fa fa-envelope fa-lg"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="http://github.com/linh-nguyeen/">
-    <span class="fa fa-github fa-lg"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="http://linkedin.com/khanhlinh-nguyen">
-    <span class="fa fa-linkedin fa-lg"></span>
-     
-  </a>
-</li>
+        
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -287,33 +262,100 @@ $(document).ready(function () {
 </div>
 
 
-<p><img src="images.jpeg" style=width:40% class="img-circle"></p>
+<h1 style="color:#5a7d9f;">
+Welcome to the Coral Reef Bleaching Project page!
+</h1>
 <p><br></p>
-<div id="welcome-i-am-linh-nguyen." class="section level1">
-<h1>Welcome! I am Linh Nguyen.</h1>
-<p></br></p>
-<div id="i-am-a-junior-double-majoring-in-advertising-and-economics."
-class="section level5">
-<h5>I am a junior double majoring in Advertising and Economics.</h5>
-</div>
-<div id="i-want-to-pursue-the-field-of-data-analytics-post-graduation."
-class="section level5">
-<h5>I want to pursue the field of data analytics post graduation.</h5>
-</div>
-<div
-id="i-love-cats-thats-why-my-profile-picture-is-my-favorite-animated-cat."
-class="section level5">
-<h5>I love cats that’s why my profile picture is my favorite animated
-cat.</h5>
-</div>
-<div
-id="i-dont-have-any-data-related-projects-either-but-if-i-did-you-could-find-them-here"
-class="section level5">
-<h5>I don’t have any data-related projects either, but if I did you
-could find them <a href="/portfolio">here</a>!</h5>
+<p><img src="coral.jpeg" style=width:40% class="img-round"></p>
+<p><br></p>
+<h4 style="color:#5a7d9f;">
+Project Description:
+</h4>
+<p>Coral and algae are in a symbiotic relationship. What this means is
+that these two organisms are in a mutually beneficial relationship, and
+they are both gaining from being in each other’s vicinity. Corals emit
+their waste product in the form of ammonium, and the algae take it up as
+a nutrient. In return, the algae undergo photosynthesis, in which they
+emit and pass their nutrients back to the coral. This positive
+relationship between the algae can only continue when the coral and
+algae are under non-stressful conditions. Recently, global warming and
+other conditions brought on by climate change have created a stressful
+environment for the coral. One example is the SST or Sea Surface
+Temperature in the sea, which has been on the rise and has caused the
+coral to expel the algae living on them. This act is considered coral
+bleaching. </br></p>
+<p><em>We will analyze a dataset covering the extent of coral bleaching,
+and the factors that affect it. A majority of this dataset was taken
+during the 2015-2017 El Nino period in which increased thermal stress
+was linked to coral bleaching.</em></p>
+<p><br></p>
+<h4 style="color:#5a7d9f;">
+Hypothesis:
+</h4>
+<ol style="list-style-type: decimal">
+<li>Bleaching percent will increase as water temperature increases.</li>
+<li>Bleaching percent will decrease as turbidity increases.</li>
+<li>Bleaching percent will decrease as cyclone frequency increases.</li>
+<li>Coral that is closer to the shore will experience more bleaching
+than coral further away from the shore.</li>
+</ol>
+<p><br></p>
+<h4 style="color:#5a7d9f;">
+Dataset:
+</h4>
+<p>
+<a href="https://www.bco-dmo.org/dataset/773466/">Bleaching and
+environmental data for global coral reef sites from 1980-2020</a>
+</p>
+<p>The Global Bleaching and Environmental Data (version two) is a
+dataset that includes information on indicators of coral bleaching, such
+as percent bleaching and sea surface temperature anomalies (SSTA), at
+various sites in the Pacific, Atlantic, and Indian Oceans from
+1980-2020. The data were collected from seven coral bleaching studies
+and databases by researchers at the Florida Institute of Technology and
+the University of California-Santa Barbara in 2022. Researchers
+converted all site coordinates to decimal degrees and compared them to
+ensure there were no duplicates. Coordinates located on land or more
+than one kilometer away from a coral reef were discarded. We downloaded
+the cleaned dataset from the Biological and Chemical Oceanography Data
+Management Office and analyzed the following variables: percent
+bleaching, temperature, distance to shore, turbidity, and cyclone
+frequency.</p>
+<p><br></p>
+<h4 style="color:#5a7d9f;">
+Data Analysis:
+</h4>
+<p>Visit our
+<a href="https://github.com/gavinphi99/coral_reef_bleaching">GitHub</a>
+to check out what we found.</p>
+<p><br></p>
+<h4 style="color:#5a7d9f;">
+Questions or Concerns?
+</h4>
+<p>Don’t hesitate to email us! We believe that coral bleaching is an
+urgent matter and would love to discuss with you!</p>
+<p>
+<a href=mailto:<alyh787@gmail.com>Aly Hirani</a>
+</p>
+<p>
+<a href=mailto:<aryavircmunshi@utexas.edu>Ary Munshi</a>
+</p>
+<p>
+<a href=mailto:<brandon.bruce@utexas.edu>Brandon Bruce</a>
+</p>
+<p>
+<a href=mailto:<jchavez88477@utexas.edu>Jocelyn Chavez</a>
+</p>
+<p>
+<a href=mailto:<khanhlinh@utexas.edu>Linh Nguyen</a>
+</p>
+<p>
+<a href=mailto:<mih569@utexas.edu>Maya Harwood</a>
+</p>
+<p>
+<a href=mailto:<phillip.gavino@utexas.edu>Phillip Gavino</a>
+</p>
 <hr />
-</div>
-</div>
 
 
 
